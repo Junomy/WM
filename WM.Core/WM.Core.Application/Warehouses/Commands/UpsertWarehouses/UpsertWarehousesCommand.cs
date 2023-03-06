@@ -7,7 +7,7 @@ using WM.Core.Domain.Entities;
 
 namespace WM.Core.Application.Warehouses.Commands.UpsertWarehouses;
 
-public class UpsertProductsCommand : IRequest
+public class UpsertWarehousesCommand : IRequest
 {
     public List<WarehouseDto> Warehouses { get; set; }
 }
