@@ -7,10 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Configurations\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.3">
       <PrivateAssets>all</PrivateAssets>
@@ -25,6 +21,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\WM.Core.Application\WM.Core.Application.csproj" />
+    <ProjectReference Include="..\WM.Core.Domain\WM.Core.Domain.csproj" />
   </ItemGroup>
 
 </Project>
