@@ -1,0 +1,20 @@
+@import 'src/styles.scss';
+
+.app-container {
+    margin-left: 70px;
+    margin-right: 70px;
+    position: relative;
+
+    @media screen and (max-width: 1500px) {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+}
+
+.background {
+    position: absolute;
+    z-index: -1000;
+    height: 300px;
+    width: 100%;
+    background-color: white;
+}
