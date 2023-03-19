@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WM.Core.Infrastructure.Persistence;
 
@@ -11,9 +12,11 @@ using WM.Core.Infrastructure.Persistence;
 namespace WM.Core.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    partial class ApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20230318230913_AddMenu")]
+    partial class AddMenu
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -115,10 +118,6 @@ namespace WM.Core.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Link")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -131,19 +130,16 @@ namespace WM.Core.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            Link = "/inventory",
                             Name = "Inventory"
                         },
                         new
                         {
                             Id = 2,
-                            Link = "/orders",
                             Name = "Orders"
                         },
                         new
                         {
                             Id = 3,
-                            Link = "/products",
                             Name = "Products"
                         });
                 });

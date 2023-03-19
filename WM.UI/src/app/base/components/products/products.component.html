@@ -1,0 +1,7 @@
+<h1>Products Component!</h1>
+<table mat-table matSort [dataSource]="data">
+    <ng-container matColumnDef="test">
+        <th mat-header-cell *matHeaderCellDef> Test</th>
+        <td mat-cell *natCellDef="let element"> {{element}} </td>
+    </ng-container>
+</table>

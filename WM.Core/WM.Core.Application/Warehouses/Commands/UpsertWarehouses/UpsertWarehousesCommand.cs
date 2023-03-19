@@ -12,7 +12,7 @@ public class UpsertWarehousesCommand : IRequest
     public List<WarehouseDto> Warehouses { get; set; }
 }
 
-public class UpsertWarehousesCommandHandler : IRequestHandler<UpsertProductsCommand>
+public class UpsertWarehousesCommandHandler : IRequestHandler<UpsertWarehousesCommand>
 {
     private readonly IApplicationContext _context;
     private readonly IMapper _mapper;
@@ -23,7 +23,7 @@ public class UpsertWarehousesCommandHandler : IRequestHandler<UpsertProductsComm
         _mapper = mapper;
     }
 
-    public async Task Handle(UpsertProductsCommand request, CancellationToken cancellationToken)
+    public async Task Handle(UpsertWarehousesCommand request, CancellationToken cancellationToken)
     {
         var inserts = request.Warehouses.Where(x => x.Id == null);
         var updates = request.Warehouses.Where(x => x.Id != null);
