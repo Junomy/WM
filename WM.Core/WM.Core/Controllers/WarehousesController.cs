@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 using WM.Core.Application.Warehouses.Commands.UpsertWarehouses;
 using WM.Core.Application.Warehouses.Queries.GetWarehouse;
 using WM.Core.Application.Warehouses.Queries.GetWarehousesByFacility;
@@ -18,7 +19,7 @@ public class WarehousesController : ControllerBase
     }
 
     [HttpGet("{id}")]
-    public async Task<IActionResult> Get([FromQuery] int id)
+    public async Task<IActionResult> Get(int id)
     {
         var result = await _mediator.Send(new GetWarehouseQuery { Id = id });
         if (result is null)
@@ -30,10 +31,10 @@ public class WarehousesController : ControllerBase
     }
 
     [HttpGet("facility/{id}")]
-    public async Task<IActionResult> GetByFacility([FromQuery] int id)
+    public async Task<IActionResult> GetByFacility(int id)
     {
         var result = await _mediator.Send(new GetWarehousesByFacilityIdQuery { FacilityId = id });
-        if (result is null)
+        if (result.IsNullOrEmpty())
         {
             return NotFound();
         }

@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using WM.Core.Application.Inventories.Commands.CreateInvItems;
+using WM.Core.Application.Inventories.Commands.DeleteInvItem;
+using WM.Core.Application.Inventories.Queries.GetFilterOptions;
 using WM.Core.Application.Inventories.Queries.GetInventories;
 
 namespace WM.Core.Api.Controllers;
@@ -36,5 +38,22 @@ public class InventoriesController : ControllerBase
         await _mediator.Send(command);
 
         return Ok();
+    }
+
+    [HttpGet("filterOptions")]
+    public async Task<IActionResult> GetFilterOptions()
+    {
+        return Ok(await _mediator.Send(new GetFilterOptionsQuery()));
+    }
+
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> Delete(int id)
+    {
+        var result = await _mediator.Send(new DeleteInvItemCommand { Id = id });
+        if(result < 0)
+        {
+            return NotFound(result);
+        }
+        return Ok(result);
     }
 }

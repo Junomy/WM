@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using WM.Core.Application.Common.Interfaces;
 using WM.Core.Domain.Entities;
 
@@ -7,7 +8,12 @@ namespace WM.Core.Application.Inventories.Commands.CreateInvItems;
 
 public class CreateInvItemsCommand : IRequest
 {
-    public List<CreateInventoryDto> Items { get; set; }
+    public int? Id { get; set; }
+    public double Price { get; set; }
+    public double Amount { get; set; }
+
+    public int ProductId { get; set; }
+    public int WarehouseId { get; set; }
 }
 
 public class CreateInvItemsCommandHandler : IRequestHandler<CreateInvItemsCommand>
@@ -23,15 +29,42 @@ public class CreateInvItemsCommandHandler : IRequestHandler<CreateInvItemsComman
 
     public async Task Handle(CreateInvItemsCommand request, CancellationToken cancellationToken)
     {
-        await _context.Inventories.AddRangeAsync(request.Items.Select(x => new Inventory
+        if(request.Id.HasValue)
         {
-            ProductId = x.ProductId,
-            WarehouseId = x.WarehouseId,
-            Amount = x.Amount,
-            Price = x.Price,
-        }), cancellationToken);
-
-        await _context.SaveChangesAsync(cancellationToken);
+            var item = await _context.Inventories.FirstOrDefaultAsync(x => x.Id == request.Id, cancellationToken);
+            if (item != null)
+            {
+                item.Price = request.Price;
+                item.Amount = request.Amount;
+                item.WarehouseId = request.WarehouseId;
+                item.ProductId = request.ProductId;
+                await _context.SaveChangesAsync(cancellationToken);
+            }
+        }
+        else
+        {
+            var item = await _context.Inventories
+                .FirstOrDefaultAsync(x => x.WarehouseId == request.WarehouseId && x.ProductId == x.ProductId, cancellationToken);
+            if (item != null)
+            {
+                item.Price = request.Price;
+                item.Amount += request.Amount;
+                item.WarehouseId = request.WarehouseId;
+                item.ProductId = request.ProductId;
+                await _context.SaveChangesAsync(cancellationToken);
+            }
+            else 
+            {
+                await _context.Inventories.AddAsync(new Inventory
+                {
+                    ProductId = request.ProductId,
+                    WarehouseId = request.WarehouseId,
+                    Amount = request.Amount,
+                    Price = request.Price,
+                }, cancellationToken);
+            }
+            await _context.SaveChangesAsync(cancellationToken);
+        }
         return;
     }
 }

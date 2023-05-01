@@ -15,6 +15,6 @@ public class InventoryDto
     public int WarehouseId { get; set; }
     public string WarehouseName { get; set; }
     public string WarehouseDescription { get; set; }
-
     public int FacilityId { get; set; }
+    public string FacilityName { get; set; }
 }
