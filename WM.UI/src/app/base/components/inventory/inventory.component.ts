@@ -40,13 +40,12 @@ export class InventoryComponent implements OnInit, OnDestroy {
                 takeUntil(this.destroy$),
             )
             .subscribe(res => {
-                this.inventory.data = res
+                this.inventory.data = res;
+                this.loading = false;
             });
 
         this.inventory.sort = this.sort;
         this.inventory.paginator = this.paginator;
-        
-        this.loading = false;
     }
 
     ngOnDestroy(): void {
@@ -86,9 +85,9 @@ export class InventoryComponent implements OnInit, OnDestroy {
                     takeUntil(this.destroy$),
                 )
                 .subscribe(res => {
-                    this.inventory.data = res
+                    this.inventory.data = res;
+                    this.loading = false;
                 });
-            this.loading = false;
         })
     }
 
@@ -117,9 +116,9 @@ export class InventoryComponent implements OnInit, OnDestroy {
                     takeUntil(this.destroy$),
                 )
                 .subscribe(res => {
-                    this.inventory.data = res
+                    this.inventory.data = res;
+                    this.loading = false;
                 });
-            this.loading = false;
         })
     }
 
@@ -130,7 +129,7 @@ export class InventoryComponent implements OnInit, OnDestroy {
                 if(res != -1) {
                     this.inventory.data = this.inventory.data.filter(i => i.id != id)
                 }
+                this.loading = false;
             })
-        this.loading = false;
     }
 }

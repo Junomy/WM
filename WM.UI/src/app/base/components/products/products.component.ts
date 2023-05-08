@@ -53,6 +53,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
                         }, { price: 0 }).price
                     )
                 });
+                this.loading = false;
             })
         
         this.products.sort = this.sort;
@@ -86,9 +87,8 @@ export class ProductsComponent implements OnInit, OnDestroy {
             minWidth: '550px',
             height: '300px'
         })
-
         dialogRef.afterClosed().subscribe((res) => {
-            console.log(res.name)
+            this.loading = true;
             let updatedProducts = this.products.data;
             if(updatedProducts.some(x => x.id == res.id)){
                 updatedProducts = updatedProducts.map(x => {
@@ -108,15 +108,18 @@ export class ProductsComponent implements OnInit, OnDestroy {
                 updatedProducts.push(res)
             }
             this.products.data = updatedProducts;
+            this.loading = false;
         })
     }
 
     deleteProduct(id: number) {
+        this.loading = true;
         this.productsDataService.deleteProduct(id)
             .subscribe((res) => {
                 if(this.products.data.some(x => x.id == res)) {
                     this.products.data = this.products.data.filter(x => x.id != res)
                 }
+                this.loading = false;
             });
     }
 
@@ -129,7 +132,10 @@ export class ProductsComponent implements OnInit, OnDestroy {
             .pipe(
                 takeUntil(this.destroy$), 
                 finalize(() => this.loading = false))
-            .subscribe(res => this.products.data = res)
+            .subscribe(res => {
+                this.products.data = res;
+                this.loading = false;
+            })
     }
 
     clearFilters() {

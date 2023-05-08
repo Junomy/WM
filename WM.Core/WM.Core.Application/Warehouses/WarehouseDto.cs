@@ -10,4 +10,5 @@ public class WarehouseDto : IMapFrom<Warehouse>
     public string Description { get; set; }
 
     public int FacilityId { get; set; }
+    public string FacilityName { get; set; }
 }

@@ -235,6 +235,9 @@ namespace WM.Core.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("Role")
+                        .HasColumnType("int");
+
                     b.Property<string>("Surname")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -244,6 +247,55 @@ namespace WM.Core.Infrastructure.Migrations
                     b.HasIndex("FacilityId");
 
                     b.ToTable("Users");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = 0,
+                            Email = "maxslag74@gmail.com",
+                            IsDeleted = false,
+                            ModifiedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ModifiedBy = 0,
+                            Name = "Maxim",
+                            Password = "Pa$$word1234",
+                            Position = "Head Admin",
+                            Role = 0,
+                            Surname = "Babyuk"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = 0,
+                            Email = "manager_test@gmail.com",
+                            FacilityId = 3,
+                            IsDeleted = false,
+                            ModifiedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ModifiedBy = 0,
+                            Name = "Manager",
+                            Password = "Pa$$word1234",
+                            Position = "Manager",
+                            Role = 1,
+                            Surname = "Test"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = 0,
+                            Email = "worker_test@gmail.com",
+                            FacilityId = 3,
+                            IsDeleted = false,
+                            ModifiedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ModifiedBy = 0,
+                            Name = "Worker",
+                            Password = "Pa$$word1234",
+                            Position = "Worker",
+                            Role = 2,
+                            Surname = "Test"
+                        });
                 });
 
             modelBuilder.Entity("WM.Core.Domain.Entities.Warehouse", b =>

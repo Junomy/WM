@@ -1,6 +1,8 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 using WM.Core.Application.Facilities.Commands.UpsertFacility;
+using WM.Core.Application.Facilities.Queries.GetFacilities;
 using WM.Core.Application.Facilities.Queries.GetFacility;
 
 namespace WM.Core.Api.Controllers;
@@ -25,6 +27,17 @@ public class FacilitiesController : ControllerBase
             return NotFound();
         }
 
+        return Ok(result);
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> GetAll()
+    {
+        var result = await _mediator.Send(new GetFaciltiiesCommand());
+        if (result.IsNullOrEmpty())
+        {
+            return NotFound();
+        }
         return Ok(result);
     }
 

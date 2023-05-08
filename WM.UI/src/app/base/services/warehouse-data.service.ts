@@ -11,4 +11,24 @@ export class WarehouseDataService {
     getWarehouses(facilityId: number) {
         return this.http.get<Warehouse[]>(`https://localhost:44369/api/warehouses/facility/${facilityId}`);
     }
+
+    createWarehouse(warehouse: Warehouse) {
+        return this.http.post(`https://localhost:44369/api/warehouses`, {
+            name: warehouse.name,
+            description: warehouse.description,
+            facilityId: warehouse.facilityId,
+        });
+    }
+
+    updateWarehouse(warehouse: Warehouse) {
+        return this.http.put(`https://localhost:44369/api/warehouses`, {
+            id: warehouse.id,
+            name: warehouse.name,
+            description: warehouse.description,
+        });
+    }
+
+    deleteWarehouse(id: number) {
+        return this.http.delete(`https://localhost:44369/api/warehouses/${id}`);
+    }
 }

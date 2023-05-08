@@ -1,7 +1,10 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
-using WM.Core.Application.Warehouses.Commands.UpsertWarehouses;
+using WM.Core.Application.Warehouses.Commands.CreateWarehouse;
+using WM.Core.Application.Warehouses.Commands.DeleteWarehouse;
+using WM.Core.Application.Warehouses.Commands.UpdateWarehouse;
 using WM.Core.Application.Warehouses.Queries.GetWarehouse;
 using WM.Core.Application.Warehouses.Queries.GetWarehousesByFacility;
 
@@ -9,6 +12,7 @@ namespace WM.Core.Api.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
+[Authorize(Roles = "Admin")]
 public class WarehousesController : ControllerBase
 {
     private readonly IMediator _mediator;
@@ -43,9 +47,23 @@ public class WarehousesController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> Upsert([FromBody] UpsertWarehousesCommand command)
+    public async Task<IActionResult> Create([FromBody] CreateWarehouseCommand command)
     {
         await _mediator.Send(command);
+        return Ok();
+    }
+
+    [HttpPut]
+    public async Task<IActionResult> Update([FromBody] UpdateWarehouseCommand command)
+    {
+        await _mediator.Send(command);
+        return Ok();
+    }
+
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> Delete(int id)
+    {
+        await _mediator.Send(new DeleteWarehouseCommand { Id = id });
         return Ok();
     }
 }

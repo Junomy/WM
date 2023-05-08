@@ -1,5 +1,6 @@
 <div class="background"></div>
 <div class="app-container">
-  <app-navigation></app-navigation>
+  <app-navigation *ngIf="loggedIn"></app-navigation>
+  <app-login (loggedIn)="onLoggedIn($event)" *ngIf="!loggedIn"></app-login>
   <router-outlet></router-outlet>
 </div>

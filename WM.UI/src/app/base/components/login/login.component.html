@@ -1,0 +1,17 @@
+<app-loading *ngIf="loading"></app-loading>
+<div class="container">
+    <h1>Login</h1>
+    <form class="form-body" [formGroup]="fg">
+        <mat-form-field class="row">
+            <mat-label for="email">Email:</mat-label>
+            <input id="email" type="text" formControlName="email" matInput>
+        </mat-form-field><br>
+        <mat-form-field class="row">
+            <mat-label for="password">Password:</mat-label>
+            <input id="password" type="password" formControlName="password" matInput>
+        </mat-form-field>
+        <div class="w-100">
+            <button [disabled]="!fg.value.email || !fg.value.password" class="def-btn" color="primary" mat-raised-button (click)="login()">Login</button>
+        </div>
+    </form>
+</div>

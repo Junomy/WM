@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -27,6 +27,11 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { InventoryFilterComponent } from './base/components/inventory-filter/inventory-filter.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { InventoryDialogComponent } from './base/components/inventory-dialog/inventory-dialog.component';
+import { WarehousesComponent } from './base/components/warehouses/warehouses.component';
+import { WarehouseDialogComponent } from './base/components/warehouse-dialog/warehouse-dialog.component';
+import { AuthInterceptor } from './base/interceptors/auth-interceptor';
+import { LoginComponent } from './base/components/login/login.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -38,7 +43,10 @@ import { InventoryDialogComponent } from './base/components/inventory-dialog/inv
     LoadingSpinnerComponent,
     ProductDialogComponent,
     InventoryFilterComponent,
-    InventoryDialogComponent
+    InventoryDialogComponent,
+    WarehousesComponent,
+    WarehouseDialogComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -59,9 +67,16 @@ import { InventoryDialogComponent } from './base/components/inventory-dialog/inv
     ReactiveFormsModule,
     MatDialogModule,
     MatTooltipModule,
-    MatSidenavModule
+    MatSidenavModule,
+    RouterModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -14,20 +14,27 @@ public class GetWarehousesByFacilityIdQuery : IRequest<IList<WarehouseDto>>
 public class GetWarehousesByFacilityIdQueryHandler : IRequestHandler<GetWarehousesByFacilityIdQuery, IList<WarehouseDto>>
 {
     private readonly IApplicationContext _context;
-    private readonly IMapper _mapper;
 
-    public GetWarehousesByFacilityIdQueryHandler(IApplicationContext context, IMapper mapper)
+    public GetWarehousesByFacilityIdQueryHandler(IApplicationContext context)
     {
         _context = context;
-        _mapper = mapper;
     }
 
     public async Task<IList<WarehouseDto>> Handle(GetWarehousesByFacilityIdQuery request, CancellationToken cancellationToken)
     {
         return await _context.Warehouses
+            .Include(x => x.Facility)
             .AsNoTracking()
             .Where(x => x.FacilityId == request.FacilityId)
-            .ProjectToListAsync<WarehouseDto>(_mapper.ConfigurationProvider, cancellationToken);
+            .Select(x => new WarehouseDto
+            {
+                Id = x.Id,
+                Name = x.Name,
+                Description = x.Description,
+                FacilityId = x.FacilityId,
+                FacilityName = x.Facility.Name
+            })
+            .ToListAsync(cancellationToken);
     }
 }
 
