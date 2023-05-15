@@ -12,6 +12,10 @@ public class UsersConfig : IEntityTypeConfiguration<User>
             .WithMany(x => x.Users)
             .HasForeignKey(x => x.FacilityId);
 
+        builder.HasOne(p => p.Role)
+            .WithMany(p => p.Users)
+            .HasForeignKey(x => x.RoleId);
+
         builder.HasData(new User[]
         {
             new User { 

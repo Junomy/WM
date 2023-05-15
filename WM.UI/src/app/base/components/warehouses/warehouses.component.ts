@@ -8,6 +8,8 @@ import { Warehouse } from "../../models/Warehouse";
 import { WarehouseDataService } from "../../services/warehouse-data.service";
 import { MatDialog } from "@angular/material/dialog";
 import { WarehouseDialogComponent } from "../warehouse-dialog/warehouse-dialog.component";
+import { User } from "../../models/User";
+import { AuthService } from "../../services/auth.service";
 
 @Component({
     selector: 'app-warehouses',
@@ -22,15 +24,24 @@ export class WarehousesComponent implements OnInit, OnDestroy {
     @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
     warehouses = new MatTableDataSource<Warehouse>();
     facilityId = 3;
+    user!: User;
     displayedColumns = ['name', 'description', 'facility', 'editBtn', 'deleteBtn'];
 
     constructor(
         private readonly warehouseDataService: WarehouseDataService,
+        private authService: AuthService,
         private dialog: MatDialog
     ) {}
 
     ngOnInit(): void {
         this.loading = true;
+        this.authService.getCurrentUser()
+            .pipe(
+                takeUntil(this.destroy$), 
+                finalize(() => this.loading = false))
+            .subscribe(res => {
+                this.user = res;
+            });
         this.warehouseDataService.getWarehouses(this.facilityId)
             .pipe(
                 takeUntil(this.destroy$), 

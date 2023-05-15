@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using WM.Core.Application.Inventories.Commands.CreateInvItems;
@@ -10,6 +11,7 @@ namespace WM.Core.Api.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
+[Authorize]
 public class InventoriesController : ControllerBase
 {
     private readonly IMediator _mediator;

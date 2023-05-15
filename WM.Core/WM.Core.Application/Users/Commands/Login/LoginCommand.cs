@@ -9,13 +9,13 @@ using WM.Core.Application.Common.Interfaces;
 
 namespace WM.Core.Application.Users.Commands.Login;
 
-public class LoginCommand : IRequest<string>
+public class LoginCommand : IRequest<Object?>
 {
     public string Email { get; set; }
     public string Password { get; set; }
 }
 
-public class LoginCommandHandler : IRequestHandler<LoginCommand, string>
+public class LoginCommandHandler : IRequestHandler<LoginCommand, Object?>
 {
     private readonly IApplicationContext _context;
 
@@ -24,7 +24,7 @@ public class LoginCommandHandler : IRequestHandler<LoginCommand, string>
         _context = context;
     }
 
-    public async Task<string> Handle(LoginCommand request, CancellationToken cancellationToken)
+    public async Task<Object?> Handle(LoginCommand request, CancellationToken cancellationToken)
     {
         var user = await _context.Users.FirstOrDefaultAsync(x => x.Email == request.Email && x.Password == request.Password, cancellationToken);
         if (user is not null)
@@ -45,7 +45,10 @@ public class LoginCommandHandler : IRequestHandler<LoginCommand, string>
 
             var token = JwtHelper.GetToken(user.Email, user.Role.ToString(), new TimeSpan(1, 0, 0));
             var jwtToken = new JwtSecurityTokenHandler().WriteToken(token);
-            return jwtToken;
+            return new {
+                token = jwtToken,
+                expiresAt = DateTime.UtcNow.Add(new TimeSpan(1, 0, 0))
+            };
         }
         return null;
     }

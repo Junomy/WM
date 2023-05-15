@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using WM.Core.Application.Common.Interfaces;
 using WM.Core.Domain.Entities;
+using WM.Core.Domain.Enums;
 
 namespace WM.Core.Application.Menu.Queries.GetMenu;
 
@@ -30,9 +31,20 @@ public class GetMenuQueryHandler : IRequestHandler<GetMenuQuery, List<MenuItem>>
         {
             return new List<MenuItem>();
         }
+        var menu = _context.MenuItems.AsNoTracking();
+        if (user.Role == Roles.Admin)
+        {
+            menu = menu.Where(x => x.Admin);
+        }
+        if (user.Role == Roles.Manager)
+        {
+            menu = menu.Where(x => x.Manager);
+        }
+        if (user.Role == Roles.Worker)
+        {
+            menu = menu.Where(x => x.Worker);
+        }
 
-        return await _context.MenuItems
-            .AsNoTracking()
-            .ToListAsync(cancellationToken);
+        return await menu.ToListAsync(cancellationToken);
     }
 }

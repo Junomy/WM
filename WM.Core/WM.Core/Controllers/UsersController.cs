@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WM.Core.Application.Products.Commands.UpsertProducts;
 using WM.Core.Application.Products.Queries.GetProduct;
@@ -10,6 +11,7 @@ namespace WM.Core.Api.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
+[Authorize]
 public class UsersController : ControllerBase
 {
     private readonly IMediator _mediator;
@@ -19,10 +21,10 @@ public class UsersController : ControllerBase
         _mediator = mediator;
     }
 
-    [HttpGet("{id}")]
+    [HttpGet]
     public async Task<IActionResult> Get([FromQuery] int id)
     {
-        var result = await _mediator.Send(new GetUserQuery { Id = id });
+        var result = await _mediator.Send(new GetUserQuery());
         if (result is null)
         {
             return NotFound();
@@ -32,6 +34,7 @@ public class UsersController : ControllerBase
     }
 
     [HttpPost("login")]
+    [AllowAnonymous]
     public async Task<IActionResult> Post([FromBody] LoginCommand command)
     {
         var result = await _mediator.Send(command);

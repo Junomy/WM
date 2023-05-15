@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using WM.Core.Application.Facilities.Commands.UpsertFacility;
@@ -9,6 +10,7 @@ namespace WM.Core.Api.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
+[Authorize]
 public class FacilitiesController : ControllerBase
 {
     private readonly IMediator _mediator;

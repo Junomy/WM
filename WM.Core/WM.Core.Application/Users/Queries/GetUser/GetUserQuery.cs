@@ -7,26 +7,21 @@ using WM.Core.Domain.Entities;
 
 namespace WM.Core.Application.Users.Queries.GetUser;
 
-public class GetUserQuery : IRequest<UserDto?>
+public class GetUserQuery : IRequest<User?>
 {
-    public int Id { get; set; }
 }
 
-public class GetUserQueryHandler : IRequestHandler<GetUserQuery, UserDto?>
+public class GetUserQueryHandler : IRequestHandler<GetUserQuery, User?>
 {
-    private readonly IApplicationContext _context;
-    private readonly IMapper _mapper;
+    private readonly IUserService _userService;
 
-    public GetUserQueryHandler(IApplicationContext context, IMapper mapper)
+    public GetUserQueryHandler(IUserService userService)
     {
-        _context = context;
-        _mapper = mapper;
+        _userService = userService;
     }
 
-    public async Task<UserDto?> Handle(GetUserQuery request, CancellationToken cancellationToken)
+    public async Task<User?> Handle(GetUserQuery request, CancellationToken cancellationToken)
     {
-        return await _context.Users
-            .ProjectTo<UserDto>(_mapper.ConfigurationProvider)
-            .FirstOrDefaultAsync(x => x.Id == request.Id, cancellationToken);
+        return await _userService.GetUser(cancellationToken);
     }
 }

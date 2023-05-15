@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WM.Core.Application.Products.Commands.DeleteProduct;
 using WM.Core.Application.Products.Commands.UpdateProduct;
@@ -10,6 +11,7 @@ namespace WM.Core.Api.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
+[Authorize]
 public class ProductsController : ControllerBase
 {
     private readonly IMediator _mediator;

@@ -32,8 +32,9 @@ export class LoginComponent implements OnInit {
         const email = this.fg.value.email;
         const password = this.fg.value.password;
 
-        this.authService.login(email, password).subscribe(token => {
-            localStorage.setItem('token', token);
+        this.authService.login(email, password).subscribe(res => {
+            localStorage.setItem('token', res.token);
+            localStorage.setItem('expiresAt', res.expiresAt);
             this.loggedIn.emit(true);
             this.router.navigate(['/inventory']);
             this.loading = false;

@@ -12,7 +12,7 @@ namespace WM.Core.Api.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-[Authorize(Roles = "Admin")]
+[Authorize(Roles = "Admin,Manager")]
 public class WarehousesController : ControllerBase
 {
     private readonly IMediator _mediator;

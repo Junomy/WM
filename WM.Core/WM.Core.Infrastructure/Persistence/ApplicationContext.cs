@@ -13,6 +13,8 @@ public class ApplicationContext : DbContext, IApplicationContext
     public DbSet<Product> Products { get; set; }
     public DbSet<Inventory> Inventories { get; set; }
     public DbSet<MenuItem> MenuItems { get; set; }
+    public DbSet<Role> Roles { get; set; }
+    public DbSet<MenuRole> MenuRoles { get; set; }
 
     public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options) { }
 

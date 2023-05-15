@@ -11,7 +11,8 @@ public interface IApplicationContext
     DbSet<User> Users { get; set; }
     DbSet<Product> Products { get; set; }
     DbSet<Inventory> Inventories { get; set; }
-    DbSet<MenuItem> MenuItems { get; set; }
+    DbSet<Role> Roles { get; set; }
+    DbSet<MenuRole> MenuRoles { get; set; }
     ChangeTracker ChangeTracker { get; }
 
     Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
