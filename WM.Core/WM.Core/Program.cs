@@ -4,7 +4,6 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using WM.Core.Application;
 using WM.Core.Application.Common.Authorization;
-using WM.Core.Domain.Enums;
 using WM.Core.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);

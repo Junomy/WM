@@ -26,7 +26,9 @@ public class LoginCommandHandler : IRequestHandler<LoginCommand, Object?>
 
     public async Task<Object?> Handle(LoginCommand request, CancellationToken cancellationToken)
     {
-        var user = await _context.Users.FirstOrDefaultAsync(x => x.Email == request.Email && x.Password == request.Password, cancellationToken);
+        var user = await _context.Users
+            .Include(x => x.Role)
+            .FirstOrDefaultAsync(x => x.Email == request.Email && x.Password == request.Password, cancellationToken);
         if (user is not null)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
@@ -37,13 +39,13 @@ public class LoginCommandHandler : IRequestHandler<LoginCommand, Object?>
                 Subject = new ClaimsIdentity(new Claim[]
                 {
                     new Claim(ClaimTypes.Email, user.Email),
-                    new Claim(ClaimTypes.Role, user.Role.ToString()),
+                    new Claim(ClaimTypes.Role, user.Role.Name),
                 }),
                 Expires = DateTime.UtcNow.AddHours(1),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
 
-            var token = JwtHelper.GetToken(user.Email, user.Role.ToString(), new TimeSpan(1, 0, 0));
+            var token = JwtHelper.GetToken(user.Email, user.Role.Name, new TimeSpan(1, 0, 0));
             var jwtToken = new JwtSecurityTokenHandler().WriteToken(token);
             return new {
                 token = jwtToken,

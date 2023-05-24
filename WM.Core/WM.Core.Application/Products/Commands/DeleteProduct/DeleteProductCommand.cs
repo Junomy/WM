@@ -22,7 +22,7 @@ public class DeleteProductCommandHandler : IRequestHandler<DeleteProductCommand,
     {
         var product = await _context.Products.FirstOrDefaultAsync(x => x.Id == command.Id, cancellationToken);
         if(product == null) { return -1; }
-        product.IsDeleted = true;
+        _context.Products.Remove(product);
         await _context.SaveChangesAsync(cancellationToken);
         return product.Id;
     }

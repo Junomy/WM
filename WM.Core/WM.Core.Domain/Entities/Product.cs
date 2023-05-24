@@ -7,4 +7,5 @@ public class Product : BaseEntity
     public double Price { get; set; }
 
     public List<Inventory> Inventories { get; set; }
+    public List<OrderItem> OrderItems { get; set; }
 }

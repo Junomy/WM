@@ -26,7 +26,8 @@
                     class="col option" 
                     placeholder="Choose product" 
                     formControlName="products" 
-                    [ngClass]="fg.value.facilities ? 'filled' : 'active'"
+                    [disabled]="!fg.value.facilities"
+                    [ngClass]="!fg.value.facilities ? 'inactive' : fg.value.products ? 'filled' : 'active'"
                     multiple>
                     <mat-option *ngFor="let product of options.productOptions" [value]="product.id">{{ product.name }}</mat-option>
                </mat-select>

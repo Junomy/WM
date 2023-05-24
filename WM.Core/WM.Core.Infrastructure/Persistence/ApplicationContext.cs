@@ -15,6 +15,9 @@ public class ApplicationContext : DbContext, IApplicationContext
     public DbSet<MenuItem> MenuItems { get; set; }
     public DbSet<Role> Roles { get; set; }
     public DbSet<MenuRole> MenuRoles { get; set; }
+    public DbSet<Order> Orders { get; set; }
+    public DbSet<OrderItem> OrderItems { get; set; }
+    public DbSet<OrderStatus> OrderStatuses { get; set; }
 
     public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options) { }
 

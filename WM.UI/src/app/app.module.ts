@@ -32,6 +32,7 @@ import { WarehouseDialogComponent } from './base/components/warehouse-dialog/war
 import { AuthInterceptor } from './base/interceptors/auth-interceptor';
 import { LoginComponent } from './base/components/login/login.component';
 import { RouterModule } from '@angular/router';
+import { OrderDetailsComponent } from './base/components/order-details/order-details.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { RouterModule } from '@angular/router';
     InventoryDialogComponent,
     WarehousesComponent,
     WarehouseDialogComponent,
-    LoginComponent
+    LoginComponent,
+    OrderDetailsComponent
   ],
   imports: [
     BrowserModule,

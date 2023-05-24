@@ -21,4 +21,8 @@
     <ProjectReference Include="..\WM.Core.Domain\WM.Core.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Orders\Commands\" />
+  </ItemGroup>
+
 </Project>

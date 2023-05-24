@@ -25,7 +25,7 @@ public class UsersConfig : IEntityTypeConfiguration<User>
                 Email = "maxslag74@gmail.com",
                 Password = "Pa$$word1234",
                 Position = "Head Admin",
-                Role = Domain.Enums.Roles.Admin,
+                RoleId = 1,
                 FacilityId = null
             },
             new User
@@ -36,7 +36,7 @@ public class UsersConfig : IEntityTypeConfiguration<User>
                 Email = "manager_test@gmail.com",
                 Password = "Pa$$word1234",
                 Position = "Manager",
-                Role = Domain.Enums.Roles.Manager,
+                RoleId = 2,
                 FacilityId = 3
             },
             new User
@@ -47,7 +47,7 @@ public class UsersConfig : IEntityTypeConfiguration<User>
                 Email = "worker_test@gmail.com",
                 Password = "Pa$$word1234",
                 Position = "Worker",
-                Role = Domain.Enums.Roles.Worker,
+                RoleId = 3,
                 FacilityId = 3
             }
         });

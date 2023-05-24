@@ -32,11 +32,6 @@ public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand,
             Name = request.Name,
             Description = request.Description,
             Price = request.Price,
-            CreatedAt = DateTime.Now,
-            CreatedBy = 1,
-            ModifiedAt = DateTime.Now,
-            ModifiedBy = 1,
-            IsDeleted = false
         };
         await _context.Products.AddRangeAsync(product);
         await _context.SaveChangesAsync(cancellationToken);

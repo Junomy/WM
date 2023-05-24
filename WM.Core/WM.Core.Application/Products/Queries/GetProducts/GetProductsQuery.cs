@@ -26,9 +26,7 @@ public class GetProductsQueryHandler : IRequestHandler<GetProductsQuery, List<Pr
 
     public async Task<List<ProductDto>> Handle(GetProductsQuery request, CancellationToken cancellationToken)
     {
-        var products = _context.Products
-            .AsNoTracking()
-            .Where(x => !x.IsDeleted);
+        var products = _context.Products.AsNoTracking();
 
         if (request.Name is not null)
         {

@@ -9,4 +9,5 @@ public class Facility : BaseEntity
 
     public List<Warehouse> Warehouses { get; set; }
     public List<User> Users { get; set; }
+    public List<Order> Orders { get; set; }
 }
