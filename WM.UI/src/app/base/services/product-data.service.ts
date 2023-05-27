@@ -11,9 +11,9 @@ export class ProductDataService {
 
     getProducts(filter: ProductFilter) {
         return this.http.post<Product[]>("https://localhost:44369/api/products/get", {
-            name: filter.name,
-            minPrice: filter.minPrice,
-            maxPrice: filter.maxPrice
+            name: filter?.name || null,
+            minPrice: filter?.minPrice || null,
+            maxPrice: filter?.maxPrice || null
         });
     }
 

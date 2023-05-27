@@ -6,6 +6,9 @@ import { ReplaySubject, finalize, takeUntil } from "rxjs";
 import { Order } from "../../models/Order";
 import { OrderDataService } from "../../services/order-data.service";
 import { Router } from "@angular/router";
+import { MatDialog } from "@angular/material/dialog";
+import { OrderFormComponent } from "../order-form/order-form.component";
+import { FormControl, FormGroup } from "@angular/forms";
 
 @Component({
     selector: 'app-orders',
@@ -21,12 +24,33 @@ export class OrdersComponent implements OnInit, OnDestroy {
     orders = new MatTableDataSource<Order>();
     displayedColumns = ['id', 'facility', 'status', 'sum'];
     facilityId = 3;
+    filterForm: FormGroup;
+    statuses: [
+        {
+            id: 1,
+            name: 'New',
+        },
+        {
+            id: 2,
+            name: 'Accepted',
+        },
+        {
+            id: 3,
+            name: 'Closed',
+        },
+        {
+            id: 1,
+            name: 'Canceled',
+        }
+    ];
 
     constructor(private orderDataService: OrderDataService,
-        private router: Router) {}
+        private router: Router,
+        private dialog: MatDialog) {}
 
     ngOnInit(): void {
-        this.orderDataService.getOrders(this.facilityId)
+        this.loading = true;
+        this.orderDataService.getOrders(this.facilityId, null, null)
             .pipe(
                 takeUntil(this.destroy$), 
                 finalize(() => this.loading = false))
@@ -34,6 +58,10 @@ export class OrdersComponent implements OnInit, OnDestroy {
                 this.orders.data = res;
                 this.loading = false;
             });
+        this.filterForm = new FormGroup({
+            id: new FormControl(),
+            statusId: new FormControl()
+        });
     }
 
     ngOnDestroy(): void {
@@ -63,5 +91,39 @@ export class OrdersComponent implements OnInit, OnDestroy {
 
     redirect(id: number) {
         this.router.navigate(['/orders/details', id]);
+    }
+
+    orderModal(id: number) {
+        const dialogRef = this.dialog.open(OrderFormComponent, {
+            data: id,
+            width: '50%',
+            minWidth: '350px',
+            height: '50%'
+        })
+
+        dialogRef.afterClosed().subscribe(() => {
+            this.loading = true;
+            this.orderDataService.getOrders(this.facilityId)
+                .pipe(
+                    takeUntil(this.destroy$), 
+                    finalize(() => this.loading = false))
+                .subscribe(res => {
+                    this.orders.data = res;
+                    this.loading = false;
+                });
+        });
+    }
+
+    filter() {
+        const orderNumber = this.filterForm.value.id;
+        const statusIds = this.filterForm.value.statusId;
+        this.orderDataService.getOrders(this.facilityId, orderNumber, statusIds)
+            .pipe(
+                takeUntil(this.destroy$), 
+                finalize(() => this.loading = false))
+            .subscribe(res => {
+                this.orders.data = res;
+                this.loading = false;
+            });
     }
 }

@@ -50,7 +50,28 @@
         </tbody>
     </table>
     <div>
-        <button mat-raised-button color="primary" *ngIf="order.statusId == 1">Accept</button>
-        <button mat-raised-button color="warn" *ngIf="order.statusId == 1 || order.statusId == 2">Close</button>
+        <button 
+            mat-raised-button 
+            color="primary" 
+            class="def-btn"
+            *ngIf="order.statusId == 2" 
+            (click)="updateStatus(3)">
+            Close Order</button>
+        <button 
+            mat-raised-button 
+            color="warn" 
+            class="def-btn"
+            *ngIf="order.statusId == 1" 
+            [disabled]="!validOrder" 
+            (click)="updateStatus(4)">
+            Cancel</button>
+        <button 
+            mat-raised-button 
+            color="primary" 
+            class="def-btn"
+            *ngIf="order.statusId == 1" 
+            [disabled]="!validOrder" 
+            (click)="updateStatus(2)">
+            Accept</button>
     </div>
 </div>

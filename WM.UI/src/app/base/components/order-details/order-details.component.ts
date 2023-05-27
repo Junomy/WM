@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from "@angular/core";
 import { ReplaySubject, finalize, switchMap, takeUntil } from "rxjs";
 import { OrderDataService } from "../../services/order-data.service";
 import { Order, OrderItem } from "../../models/Order";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { InventoryDataService } from "../../services/inventory-data.service";
 import { InventoryItem } from "../../models/InventoryModel";
 import { InventoryFilter } from "../../models/InventoryFilterModel";
@@ -18,11 +18,13 @@ export class OrderDetailsComponent implements OnInit, OnDestroy {
     order!: Order;
     inventory!: InventoryItem[];
     invFilter!: InventoryFilter;
-    orderId = 1;
+    orderId: number;
+    validOrder = true;
 
     constructor(private orderDataService: OrderDataService,
         private inventoryDataService: InventoryDataService,
-        private route: ActivatedRoute) {}
+        private route: ActivatedRoute,
+        private router: Router) {}
 
     ngOnInit(): void {
         this.loading = true;
@@ -77,16 +79,31 @@ export class OrderDetailsComponent implements OnInit, OnDestroy {
             .map(i => i.amount)
             .reduce((sum, i) => sum);
         if(invAmount < productAmount) {
+            this.validOrder = false;
             return {
                 'background-color': 'lightcoral',
                 'color': 'white'
             }
         }
         else {
+            this.validOrder = true;
             return {
                 'background-color': 'white',
                 'color': 'black'
             }
         }
+    }
+
+    updateStatus(statusId: number) {
+        this.loading = true;
+        this.orderDataService.updateOrder(this.order.id, statusId, this.order.items)
+            .pipe(
+                takeUntil(this.destroy$),
+                finalize(() => {
+                    this.loading = false;
+                    this.router.navigate(["/orders"]);
+                })
+            )
+            .subscribe();
     }
 }

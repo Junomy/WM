@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
+using WM.Core.Application.Orders.Commands.CreateOrder;
+using WM.Core.Application.Orders.Commands.UpdateOrder;
 using WM.Core.Application.Orders.Queries.GetOrder;
 using WM.Core.Application.Orders.Queries.GetOrders;
 
@@ -20,9 +22,13 @@ public class OrdersController : ControllerBase
     }
 
     [HttpGet("{facilityId}")]
-    public async Task<IActionResult> Get(int? facilityId)
+    public async Task<IActionResult> Get(int? facilityId, [FromQuery] string? orderNumber, [FromQuery] List<int>? statusIds)
     {
-        var res = await _mediator.Send(new GetOrdersQuery { FacilityId = facilityId });
+        var res = await _mediator.Send(new GetOrdersQuery { 
+            FacilityId = facilityId,
+            OrderNumber = orderNumber,
+            StatusIds = statusIds
+        });
 
         if(res.IsNullOrEmpty())
         {
@@ -43,5 +49,18 @@ public class OrdersController : ControllerBase
         }
 
         return Ok(res);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Create([FromBody] CreateOrderCommand command)
+    {
+        return Ok(await _mediator.Send(command));
+    }
+
+    [HttpPut]
+    public async Task<IActionResult> Create([FromBody] UpdateOrderCommand command)
+    {
+        await _mediator.Send(command);
+        return Ok();
     }
 }

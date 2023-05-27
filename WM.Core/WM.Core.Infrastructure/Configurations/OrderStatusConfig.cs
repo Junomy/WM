@@ -22,6 +22,10 @@ public class OrderStatusConfig : IEntityTypeConfiguration<OrderStatus>
                 Id = 3,
                 Name = "Closed"
             },
+            new OrderStatus {
+                Id = 4,
+                Name = "Canceled"
+            },
         });
     }
 }

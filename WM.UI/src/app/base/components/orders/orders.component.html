@@ -1,5 +1,6 @@
 <app-loading *ngIf="loading"></app-loading>
 <h1>Orders</h1>
+<button mat-raised-button color="primary" (click)="orderModal(null)">Create order</button>
 <div>
     <table mat-table matSort [dataSource]="orders" class="mat-elevation-z8">
         <ng-container matColumnDef="id">

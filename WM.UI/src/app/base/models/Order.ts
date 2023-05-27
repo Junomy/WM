@@ -9,10 +9,10 @@ export class Order {
 }
 
 export class OrderItem {
-    id!: number;
-    name!: string;
-    amount!: number;
-    price!: number;
-    orderId!: number;
-    productId!: number;
+    id: number;
+    name: string;
+    amount: number;
+    price: number;
+    orderId: number;
+    productId: number;
 }

@@ -33,6 +33,7 @@ import { AuthInterceptor } from './base/interceptors/auth-interceptor';
 import { LoginComponent } from './base/components/login/login.component';
 import { RouterModule } from '@angular/router';
 import { OrderDetailsComponent } from './base/components/order-details/order-details.component';
+import { OrderFormComponent } from './base/components/order-form/order-form.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { OrderDetailsComponent } from './base/components/order-details/order-det
     WarehousesComponent,
     WarehouseDialogComponent,
     LoginComponent,
-    OrderDetailsComponent
+    OrderDetailsComponent,
+    OrderFormComponent
   ],
   imports: [
     BrowserModule,

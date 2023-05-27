@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using WM.Core.Application.Common.Interfaces;
 
 namespace WM.Core.Application.Orders.Queries.GetOrders;
@@ -7,6 +8,8 @@ namespace WM.Core.Application.Orders.Queries.GetOrders;
 public class GetOrdersQuery : IRequest<List<OrderDto>>
 {
     public int? FacilityId { get; set; }
+    public string? OrderNumber { get; set; }
+    public List<int>? StatusIds { get; set; }
 }
 
 public class GetOrdersQueryHandler : IRequestHandler<GetOrdersQuery, List<OrderDto>>
@@ -32,6 +35,15 @@ public class GetOrdersQueryHandler : IRequestHandler<GetOrdersQuery, List<OrderD
         {
             orders = orders.Where(x => x.FacilityId == request.FacilityId).ToList();
         }
+        if(!request.OrderNumber.IsNullOrEmpty())
+        {
+            orders = orders.Where(x => $"{x.Id}".StartsWith(request.OrderNumber)).ToList();
+        }
+        if(!request.StatusIds.IsNullOrEmpty())
+        {
+            orders = orders.Where(x => request.StatusIds.Contains(x.StatusId)).ToList();
+        }
+
         var result = new List<OrderDto>();
 
         if (!orders.Any()) return result;
