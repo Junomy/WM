@@ -42,6 +42,10 @@ public class UpdateOrderCommandHandler : IRequestHandler<UpdateOrderCommand>
         }
 
         order.StatusId = request.StatusId;
+        if(order.StatusId == 3)
+        {
+            order.ClosedAt = DateTime.Now;
+        }
 
         await _context.SaveChangesAsync(cancellationToken);
     }

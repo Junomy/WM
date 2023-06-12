@@ -9,4 +9,5 @@ public class Order
     public Facility Facility { get; set; }
     public int StatusId { get; set; }
     public OrderStatus Status { get; set; }
+    public DateTime? ClosedAt { get; set; }
 }

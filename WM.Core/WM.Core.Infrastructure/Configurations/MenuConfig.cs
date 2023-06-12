@@ -30,6 +30,16 @@ public class MenuConfig : IEntityTypeConfiguration<MenuItem>
                 Name = "Warehouses",
                 Link = "/warehouses",
             },
+            new MenuItem {
+                Id = 5,
+                Name = "Facilities",
+                Link = "/facilities",
+            },
+            new MenuItem {
+                Id = 6,
+                Name = "Dashboard",
+                Link = "/dashboard",
+            },
         });;
     }
 }

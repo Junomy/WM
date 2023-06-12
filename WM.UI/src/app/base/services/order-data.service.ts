@@ -11,8 +11,14 @@ export class OrderDataService {
     
     public getOrders(facilityId: number, orderNumber: string, statusIds: number[]): Observable<Order[]> {
         let params = new HttpParams();
-        params = params.set('orderNumber', orderNumber);
-        params = params.set('statusIds', statusIds?.join(','));
+        if(orderNumber != '') {
+            params = params.set('orderNumber', orderNumber);
+        }
+        if(statusIds.length > 0) {
+            statusIds.forEach((value, index) => {
+                params = params.append(`statusIds[${index}]`, value.toString());
+              });
+        }
         return this.http.get<Order[]>(`https://localhost:44369/api/orders/${facilityId}`, { params });
     }
 

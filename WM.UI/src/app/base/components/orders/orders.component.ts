@@ -25,7 +25,7 @@ export class OrdersComponent implements OnInit, OnDestroy {
     displayedColumns = ['id', 'facility', 'status', 'sum'];
     facilityId = 3;
     filterForm: FormGroup;
-    statuses: [
+    statuses = [
         {
             id: 1,
             name: 'New',
@@ -50,7 +50,7 @@ export class OrdersComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         this.loading = true;
-        this.orderDataService.getOrders(this.facilityId, null, null)
+        this.orderDataService.getOrders(this.facilityId, '', [])
             .pipe(
                 takeUntil(this.destroy$), 
                 finalize(() => this.loading = false))
@@ -103,7 +103,7 @@ export class OrdersComponent implements OnInit, OnDestroy {
 
         dialogRef.afterClosed().subscribe(() => {
             this.loading = true;
-            this.orderDataService.getOrders(this.facilityId)
+            this.orderDataService.getOrders(this.facilityId, '', [])
                 .pipe(
                     takeUntil(this.destroy$), 
                     finalize(() => this.loading = false))
@@ -115,8 +115,9 @@ export class OrdersComponent implements OnInit, OnDestroy {
     }
 
     filter() {
-        const orderNumber = this.filterForm.value.id;
-        const statusIds = this.filterForm.value.statusId;
+        this.loading = true;
+        const orderNumber = this.filterForm.value.id || '';
+        const statusIds = this.filterForm.value.statusId || [];
         this.orderDataService.getOrders(this.facilityId, orderNumber, statusIds)
             .pipe(
                 takeUntil(this.destroy$), 
@@ -125,5 +126,11 @@ export class OrdersComponent implements OnInit, OnDestroy {
                 this.orders.data = res;
                 this.loading = false;
             });
+    }
+
+    clearFilters() {
+        this.filterForm.get('id').reset();
+        this.filterForm.get('statusId').reset();
+        this.filter();
     }
 }

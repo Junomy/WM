@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit, ViewChild } from "@angular/core";
 import { MatTableDataSource } from "@angular/material/table";
 import { InventoryItem } from "../../models/InventoryModel";
-import { ReplaySubject, takeUntil } from "rxjs";
+import { ReplaySubject, finalize, takeUntil } from "rxjs";
 import { InventoryDataService } from "../../services/inventory-data.service";
 import { MatPaginator } from "@angular/material/paginator";
 import { MatSort } from "@angular/material/sort";
@@ -114,10 +114,10 @@ export class InventoryComponent implements OnInit, OnDestroy {
             this.inventoryDataService.getInventory(this.filter)
                 .pipe(
                     takeUntil(this.destroy$),
+                    finalize(() => this.loading = false)
                 )
                 .subscribe(res => {
                     this.inventory.data = res;
-                    this.loading = false;
                 });
         })
     }

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WM.Core.Infrastructure.Persistence;
 
@@ -11,9 +12,11 @@ using WM.Core.Infrastructure.Persistence;
 namespace WM.Core.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    partial class ApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20230603153725_AddFacilitiesTab")]
+    partial class AddFacilitiesTab
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -127,12 +130,6 @@ namespace WM.Core.Infrastructure.Migrations
                             Id = 5,
                             Link = "/facilities",
                             Name = "Facilities"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Link = "/dashboard",
-                            Name = "Dashboard"
                         });
                 });
 
@@ -180,62 +177,50 @@ namespace WM.Core.Infrastructure.Migrations
                         new
                         {
                             Id = 4,
-                            MenuId = 1,
-                            RoleId = 2
+                            MenuId = 4,
+                            RoleId = 1
                         },
                         new
                         {
                             Id = 5,
-                            MenuId = 2,
+                            MenuId = 1,
                             RoleId = 2
                         },
                         new
                         {
                             Id = 6,
-                            MenuId = 3,
+                            MenuId = 2,
                             RoleId = 2
                         },
                         new
                         {
                             Id = 7,
-                            MenuId = 4,
+                            MenuId = 3,
                             RoleId = 2
                         },
                         new
                         {
                             Id = 8,
+                            MenuId = 4,
+                            RoleId = 2
+                        },
+                        new
+                        {
+                            Id = 9,
                             MenuId = 1,
                             RoleId = 3
                         },
                         new
                         {
-                            Id = 9,
+                            Id = 10,
                             MenuId = 3,
                             RoleId = 3
                         },
                         new
                         {
-                            Id = 10,
+                            Id = 11,
                             MenuId = 5,
                             RoleId = 1
-                        },
-                        new
-                        {
-                            Id = 11,
-                            MenuId = 6,
-                            RoleId = 1
-                        },
-                        new
-                        {
-                            Id = 12,
-                            MenuId = 6,
-                            RoleId = 2
-                        },
-                        new
-                        {
-                            Id = 13,
-                            MenuId = 6,
-                            RoleId = 2
                         });
                 });
 
@@ -246,9 +231,6 @@ namespace WM.Core.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime?>("ClosedAt")
-                        .HasColumnType("datetime2");
 
                     b.Property<int>("FacilityId")
                         .HasColumnType("int");
@@ -435,7 +417,6 @@ namespace WM.Core.Infrastructure.Migrations
                         {
                             Id = 1,
                             Email = "maxslag74@gmail.com",
-                            FacilityId = 3,
                             Name = "Maxim",
                             Password = "Pa$$word1234",
                             Position = "Head Admin",

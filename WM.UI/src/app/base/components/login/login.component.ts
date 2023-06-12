@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
             localStorage.setItem('token', res.token);
             localStorage.setItem('expiresAt', res.expiresAt);
             this.loggedIn.emit(true);
-            this.router.navigate(['/inventory']);
+            this.router.navigate(['/dashboard']);
             this.loading = false;
         });
     }

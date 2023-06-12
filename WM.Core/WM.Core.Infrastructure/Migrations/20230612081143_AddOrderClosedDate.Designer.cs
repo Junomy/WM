@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WM.Core.Infrastructure.Persistence;
 
@@ -11,9 +12,11 @@ using WM.Core.Infrastructure.Persistence;
 namespace WM.Core.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    partial class ApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20230612081143_AddOrderClosedDate")]
+    partial class AddOrderClosedDate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -247,7 +250,7 @@ namespace WM.Core.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime?>("ClosedAt")
+                    b.Property<DateTime>("ClosedAt")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("FacilityId")
@@ -435,7 +438,6 @@ namespace WM.Core.Infrastructure.Migrations
                         {
                             Id = 1,
                             Email = "maxslag74@gmail.com",
-                            FacilityId = 3,
                             Name = "Maxim",
                             Password = "Pa$$word1234",
                             Position = "Head Admin",

@@ -3,7 +3,6 @@ import { MatPaginator } from "@angular/material/paginator";
 import { MatSort } from "@angular/material/sort";
 import { MatTableDataSource } from "@angular/material/table";
 import { ReplaySubject, finalize, takeUntil } from "rxjs";
-import { Product } from "../../models/Product";
 import { Warehouse } from "../../models/Warehouse";
 import { WarehouseDataService } from "../../services/warehouse-data.service";
 import { MatDialog } from "@angular/material/dialog";

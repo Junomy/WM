@@ -6,6 +6,8 @@ import { ProductsComponent } from './base/components/products/products.component
 import { WarehousesComponent } from './base/components/warehouses/warehouses.component';
 import { LoginComponent } from './base/components/login/login.component';
 import { OrderDetailsComponent } from './base/components/order-details/order-details.component';
+import { FacilitiesComponent } from './base/components/faciltiies/facilities.component';
+import { DashboardComponent } from './base/components/dashboard/dashboard.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent},
@@ -13,7 +15,9 @@ const routes: Routes = [
   { path: 'orders', component: OrdersComponent },
   { path: 'products', component: ProductsComponent },
   { path: 'warehouses', component: WarehousesComponent },
-  { path: 'orders/details/:orderId', component: OrderDetailsComponent }
+  { path: 'orders/details/:orderId', component: OrderDetailsComponent },
+  { path: 'facilities', component: FacilitiesComponent },
+  { path: 'dashboard', component: DashboardComponent }
 ];
 
 @NgModule({

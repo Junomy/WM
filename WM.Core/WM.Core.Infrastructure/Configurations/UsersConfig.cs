@@ -26,7 +26,7 @@ public class UsersConfig : IEntityTypeConfiguration<User>
                 Password = "Pa$$word1234",
                 Position = "Head Admin",
                 RoleId = 1,
-                FacilityId = null
+                FacilityId = 3
             },
             new User
             {

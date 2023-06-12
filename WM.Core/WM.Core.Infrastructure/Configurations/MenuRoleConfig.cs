@@ -35,47 +35,71 @@ public class MenuRoleConfig : IEntityTypeConfiguration<MenuRole>
                 MenuId = 3,
                 RoleId = 1,
             },
+            //new MenuRole
+            //{
+            //    Id = 4,
+            //    MenuId = 4,
+            //    RoleId = 1,
+            //},
             new MenuRole
             {
                 Id = 4,
-                MenuId = 4,
-                RoleId = 1,
-            },
-            new MenuRole
-            {
-                Id = 5,
                 MenuId = 1,
                 RoleId = 2,
             },
             new MenuRole
             {
-                Id = 6,
+                Id = 5,
                 MenuId = 2,
                 RoleId = 2,
             },
             new MenuRole
             {
-                Id = 7,
+                Id = 6,
                 MenuId = 3,
                 RoleId = 2,
             },
             new MenuRole
             {
-                Id = 8,
+                Id = 7,
                 MenuId = 4,
                 RoleId = 2,
             },
             new MenuRole
             {
-                Id = 9,
+                Id = 8,
                 MenuId = 1,
                 RoleId = 3,
             },
             new MenuRole
             {
-                Id = 10,
+                Id = 9,
                 MenuId = 3,
                 RoleId = 3,
+            },
+            new MenuRole
+            {
+                Id = 10,
+                MenuId = 5,
+                RoleId = 1,
+            },
+            new MenuRole
+            {
+                Id = 11,
+                MenuId = 6,
+                RoleId = 1,
+            },
+            new MenuRole
+            {
+                Id = 12,
+                MenuId = 6,
+                RoleId = 2,
+            },
+            new MenuRole
+            {
+                Id = 13,
+                MenuId = 6,
+                RoleId = 2,
             },
         });
     }

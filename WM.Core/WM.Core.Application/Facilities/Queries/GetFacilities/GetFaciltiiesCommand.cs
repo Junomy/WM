@@ -2,7 +2,6 @@
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using WM.Core.Application.Common.Interfaces;
-using WM.Core.Application.Common.Mappings;
 
 namespace WM.Core.Application.Facilities.Queries.GetFacilities;
 
@@ -14,18 +13,33 @@ public class GetFaciltiiesCommand : IRequest<List<FacilityDto>>
 public class GetFaciltiiesCommandHandler : IRequestHandler<GetFaciltiiesCommand, List<FacilityDto>>
 {
     private readonly IApplicationContext _context;
-    private readonly IMapper _mapper;
 
-    public GetFaciltiiesCommandHandler(IApplicationContext context, IMapper mapper)
+    public GetFaciltiiesCommandHandler(IApplicationContext context)
     {
         _context = context;
-        _mapper = mapper;
     }
 
     public async Task<List<FacilityDto>> Handle(GetFaciltiiesCommand request, CancellationToken cancellationToken)
     {
-        return await _context.Facilities
+        var result = await _context.Facilities
+            .Include(x => x.Warehouses)
             .AsNoTracking()
-            .ProjectToListAsync<FacilityDto>(_mapper.ConfigurationProvider, cancellationToken);
+            .ToListAsync(cancellationToken);
+
+        return result.Select(x => new FacilityDto 
+        { 
+            Id = x.Id,
+            Name = x.Name,
+            Description = x.Description,
+            Address = x.Address,
+            IsActive = x.IsActive,
+            Warehouses = x.Warehouses.Select(x => new Warehouses.WarehouseDto
+            { 
+                Id = x.Id,
+                Name = x.Name,
+                Description = x.Description,
+                FacilityId = x.FacilityId,
+            }).ToList(),
+        }).ToList();
     }
 }

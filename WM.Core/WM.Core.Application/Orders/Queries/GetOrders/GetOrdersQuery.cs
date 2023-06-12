@@ -35,11 +35,11 @@ public class GetOrdersQueryHandler : IRequestHandler<GetOrdersQuery, List<OrderD
         {
             orders = orders.Where(x => x.FacilityId == request.FacilityId).ToList();
         }
-        if(!request.OrderNumber.IsNullOrEmpty())
+        if (!request.OrderNumber.IsNullOrEmpty())
         {
             orders = orders.Where(x => $"{x.Id}".StartsWith(request.OrderNumber)).ToList();
         }
-        if(!request.StatusIds.IsNullOrEmpty())
+        if (!request.StatusIds.IsNullOrEmpty())
         {
             orders = orders.Where(x => request.StatusIds.Contains(x.StatusId)).ToList();
         }

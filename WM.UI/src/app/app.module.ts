@@ -34,6 +34,9 @@ import { LoginComponent } from './base/components/login/login.component';
 import { RouterModule } from '@angular/router';
 import { OrderDetailsComponent } from './base/components/order-details/order-details.component';
 import { OrderFormComponent } from './base/components/order-form/order-form.component';
+import { FacilitiesComponent } from './base/components/faciltiies/facilities.component';
+import { DashboardComponent } from './base/components/dashboard/dashboard.component';
+import { CanvasJSAngularChartsModule } from '@canvasjs/angular-charts';
 
 @NgModule({
   declarations: [
@@ -50,7 +53,9 @@ import { OrderFormComponent } from './base/components/order-form/order-form.comp
     WarehouseDialogComponent,
     LoginComponent,
     OrderDetailsComponent,
-    OrderFormComponent
+    OrderFormComponent,
+    FacilitiesComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -72,7 +77,8 @@ import { OrderFormComponent } from './base/components/order-form/order-form.comp
     MatDialogModule,
     MatTooltipModule,
     MatSidenavModule,
-    RouterModule
+    RouterModule,
+    CanvasJSAngularChartsModule
   ],
   providers: [
     {

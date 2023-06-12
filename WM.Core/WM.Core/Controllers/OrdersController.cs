@@ -22,12 +22,12 @@ public class OrdersController : ControllerBase
     }
 
     [HttpGet("{facilityId}")]
-    public async Task<IActionResult> Get(int? facilityId, [FromQuery] string? orderNumber, [FromQuery] List<int>? statusIds)
+    public async Task<IActionResult> Get(int? facilityId, [FromQuery] string? orderNumber, [FromQuery(Name = "statusIds")] int[]? statusIds)
     {
-        var res = await _mediator.Send(new GetOrdersQuery { 
+        var res = await _mediator.Send(new GetOrdersQuery {
             FacilityId = facilityId,
             OrderNumber = orderNumber,
-            StatusIds = statusIds
+            StatusIds = statusIds.ToList()
         });
 
         if(res.IsNullOrEmpty())
