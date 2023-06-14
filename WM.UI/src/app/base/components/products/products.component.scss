@@ -21,6 +21,10 @@ table {
         }
     }
 
+    button {
+        margin: 3px;
+    }
+
 }
 
 .add-btn {
@@ -31,4 +35,24 @@ table {
 .input-field {
     margin-right: 5px;
     margin-left: 5px;
+}
+
+.green-btn {
+    background-color: #7AC567;
+}
+
+.filter-btn {
+    background-color: #E58453;
+}
+
+.edit-btn {
+    background-color: #7194C8;
+}
+
+.delete-btn {
+    background-color: #F65D52;
+}
+
+.search-btn {
+    background-color: #6979D0;
 }

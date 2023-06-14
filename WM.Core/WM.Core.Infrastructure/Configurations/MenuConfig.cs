@@ -12,33 +12,33 @@ public class MenuConfig : IEntityTypeConfiguration<MenuItem>
         {
             new MenuItem {
                 Id = 1,
+                Name = "Dashboard",
+                Link = "/dashboard",
+            },
+            new MenuItem {
+                Id = 2,
                 Name = "Inventory",
                 Link = "/inventory",
             },
             new MenuItem { 
-                Id = 2,
+                Id = 3,
                 Name = "Orders",
                 Link = "/orders",
             },
             new MenuItem { 
-                Id = 3,
+                Id = 4,
                 Name = "Products",
                 Link = "/products",
             },
             new MenuItem { 
-                Id = 4,
+                Id = 5,
                 Name = "Warehouses",
                 Link = "/warehouses",
             },
             new MenuItem {
-                Id = 5,
+                Id = 6,
                 Name = "Facilities",
                 Link = "/facilities",
-            },
-            new MenuItem {
-                Id = 6,
-                Name = "Dashboard",
-                Link = "/dashboard",
             },
         });;
     }

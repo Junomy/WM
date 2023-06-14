@@ -11,5 +11,16 @@ public class WarehousesConfig : IEntityTypeConfiguration<Warehouse>
         builder.HasOne(p => p.Facility)
             .WithMany(x => x.Warehouses)
             .HasForeignKey(x => x.FacilityId);
+
+        builder.HasData(new Warehouse[]
+        {
+            new Warehouse
+            {
+                Id = 1,
+                Name = "W-A1",
+                Description = "This is a warehouse A1",
+                FacilityId = 1,
+            }
+        });
     }
 }

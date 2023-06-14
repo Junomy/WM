@@ -23,7 +23,7 @@ export class OrdersComponent implements OnInit, OnDestroy {
     destroy$ = new ReplaySubject<void>(1);
     orders = new MatTableDataSource<Order>();
     displayedColumns = ['id', 'facility', 'status', 'sum'];
-    facilityId = 3;
+    facilityId = 1;
     filterForm: FormGroup;
     statuses = [
         {
@@ -62,6 +62,9 @@ export class OrdersComponent implements OnInit, OnDestroy {
             id: new FormControl(),
             statusId: new FormControl()
         });
+
+        this.orders.sort = this.sort;
+        this.orders.paginator = this.paginator;
     }
 
     ngOnDestroy(): void {
@@ -73,19 +76,19 @@ export class OrdersComponent implements OnInit, OnDestroy {
         switch(status) {
             case 1:
                 return {
-                    'background-color': 'lightgreen',
+                    'background-color': '#9DB5DA',
                 }
             case 2:
                 return {
-                    'background-color': 'lightsalmon',
+                    'background-color': '#90DF8F',
                 }
             case 3:
                 return {
-                    'background-color': 'lightcoral',
+                    'background-color': '#E48A89',
                 }
         }
         return {
-            'background-color': 'gray',
+            'background-color': '#898989',
         };
     }
 

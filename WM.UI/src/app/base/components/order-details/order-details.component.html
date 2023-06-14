@@ -54,14 +54,14 @@
         <button 
             mat-raised-button 
             color="primary" 
-            class="def-btn"
+            class="def-btn close-btn"
             *ngIf="order.statusId == 2" 
             (click)="updateStatus(3)">
             Close Order</button>
         <button 
             mat-raised-button 
             color="warn" 
-            class="def-btn"
+            class="def-btn delete-btn"
             *ngIf="order.statusId == 1" 
             [disabled]="!validOrder" 
             (click)="updateStatus(4)">
@@ -69,7 +69,7 @@
         <button 
             mat-raised-button 
             color="primary" 
-            class="def-btn"
+            class="def-btn green-btn"
             *ngIf="order.statusId == 1" 
             [disabled]="!validOrder" 
             (click)="updateStatus(2)">

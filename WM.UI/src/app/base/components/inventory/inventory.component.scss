@@ -4,6 +4,7 @@ body {
 }
 
 table {
+    margin-top: 5px;
     width: 100%;
 }
 
@@ -30,4 +31,24 @@ table {
     background-color: white;
     box-shadow: 2px 0 4px rgba(0, 0, 0, 0.1);
     overflow: hidden;
+}
+
+button {
+    margin: 3px;
+}
+
+.green-btn {
+    background-color: #7AC567;
+}
+
+.filter-btn {
+    background-color: #E58453;
+}
+
+.edit-btn {
+    background-color: #7194C8;
+}
+
+.delete-btn {
+    background-color: #F65D52;
 }

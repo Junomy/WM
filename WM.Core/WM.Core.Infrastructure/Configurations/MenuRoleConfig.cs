@@ -17,6 +17,7 @@ public class MenuRoleConfig : IEntityTypeConfiguration<MenuRole>
 
         builder.HasData(new MenuRole[]
         {
+            //Dashboard
             new MenuRole
             {
                 Id = 1,
@@ -26,26 +27,21 @@ public class MenuRoleConfig : IEntityTypeConfiguration<MenuRole>
             new MenuRole
             {
                 Id = 2,
-                MenuId = 2,
-                RoleId = 1,
+                MenuId = 1,
+                RoleId = 2,
             },
             new MenuRole
             {
                 Id = 3,
-                MenuId = 3,
-                RoleId = 1,
+                MenuId = 1,
+                RoleId = 3,
             },
-            //new MenuRole
-            //{
-            //    Id = 4,
-            //    MenuId = 4,
-            //    RoleId = 1,
-            //},
+            //Inventory
             new MenuRole
             {
                 Id = 4,
-                MenuId = 1,
-                RoleId = 2,
+                MenuId = 2,
+                RoleId = 1,
             },
             new MenuRole
             {
@@ -56,20 +52,21 @@ public class MenuRoleConfig : IEntityTypeConfiguration<MenuRole>
             new MenuRole
             {
                 Id = 6,
-                MenuId = 3,
-                RoleId = 2,
+                MenuId = 2,
+                RoleId = 3,
             },
+            //Orders
             new MenuRole
             {
                 Id = 7,
-                MenuId = 4,
-                RoleId = 2,
+                MenuId = 3,
+                RoleId = 1,
             },
             new MenuRole
             {
                 Id = 8,
-                MenuId = 1,
-                RoleId = 3,
+                MenuId = 3,
+                RoleId = 2,
             },
             new MenuRole
             {
@@ -77,29 +74,38 @@ public class MenuRoleConfig : IEntityTypeConfiguration<MenuRole>
                 MenuId = 3,
                 RoleId = 3,
             },
+            //Products
             new MenuRole
             {
                 Id = 10,
-                MenuId = 5,
+                MenuId = 4,
                 RoleId = 1,
             },
             new MenuRole
             {
                 Id = 11,
-                MenuId = 6,
-                RoleId = 1,
+                MenuId = 4,
+                RoleId = 2,
             },
             new MenuRole
             {
                 Id = 12,
-                MenuId = 6,
-                RoleId = 2,
+                MenuId = 4,
+                RoleId = 3,
             },
+            //Warehouses
             new MenuRole
             {
                 Id = 13,
+                MenuId = 5,
+                RoleId = 1,
+            },
+            //Faailities
+            new MenuRole
+            {
+                Id = 14,
                 MenuId = 6,
-                RoleId = 2,
+                RoleId = 1,
             },
         });
     }

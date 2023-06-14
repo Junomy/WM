@@ -22,9 +22,9 @@ export class WarehousesComponent implements OnInit, OnDestroy {
     @ViewChild(MatSort, { static: true }) sort!: MatSort;
     @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
     warehouses = new MatTableDataSource<Warehouse>();
-    facilityId = 3;
+    facilityId = 1;
     user!: User;
-    displayedColumns = ['name', 'description', 'facility', 'editBtn', 'deleteBtn'];
+    displayedColumns = ['name', 'description', 'facility', 'editBtn'];
 
     constructor(
         private readonly warehouseDataService: WarehouseDataService,

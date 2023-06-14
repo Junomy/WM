@@ -65,7 +65,7 @@ public class GetInfoQueryHandler : IRequestHandler<GetInfoQuery, List<InfoItem>>
             }
         }
 
-        items = items.OrderByDescending(x => x.Amount * x.Price).Take(10).ToList(); 
+        items = items.OrderByDescending(x => x.Amount * x.Price).Take(5).ToList(); 
         orders = orders
             .Where(x => items.Select(x => x.ProductId).Intersect(x.Items.Select(x => x.ProductId)).Any())
             .ToList();

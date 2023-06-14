@@ -2,15 +2,7 @@
 <app-navigation></app-navigation>
 <h1>Facilities</h1>
 <div>
-    <table mat-table [dataSource]="facilities" class="mat-elevation-z8" matSort matPaginator>
-        <!-- <ng-container matColumnDef="toggleButton">
-            <th mat-header-cell *matHeaderCellDef></th>
-            <td mat-cell *matCellDef="let facility">
-                <button mat-icon-button (click)="toggleWarehouses(facility)">
-                    <mat-icon>{{ isExpanded(facility) ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}</mat-icon>
-                </button>
-            </td>
-        </ng-container> -->
+    <table mat-table [dataSource]="facilities" matSort matPaginator>
         <ng-container matColumnDef="name">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
             <td mat-cell *matCellDef="let element">{{ element.name }}</td>
@@ -23,23 +15,6 @@
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Address</th>
             <td mat-cell *matCellDef="let element">{{ element.address }}</td>
         </ng-container>
-        <!-- <ng-container matColumnDef="subtable" *ngFor="let facility of facilities.data">
-            <td mat-cell [attr.colspan]="displayedColumns.length">
-                <table mat-table [dataSource]="getWarehouses(facility)">
-                    <ng-container matColumnDef="name">
-                        <th mat-header-cell *matHeaderCellDef> Name </th>
-                        <td mat-cell *matCellDef="let warehouse">{{ warehouse.name }}</td>
-                    </ng-container>
-                    <ng-container matColumnDef="description">
-                        <th mat-header-cell *matHeaderCellDef> Description </th>
-                        <td mat-cell *matCellDef="let warehouse">{{ warehouse.description }}</td>
-                    </ng-container>
-
-                    <tr mat-header-row *matHeaderRowDef="warehouseColumns"></tr>
-                    <tr mat-row *matRowDef="let row; columns: warehouseColumns;"></tr>
-                </table>
-            </td>
-        </ng-container> -->
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>

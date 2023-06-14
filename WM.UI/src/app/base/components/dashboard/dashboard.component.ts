@@ -15,7 +15,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   donutChart: any;
   lineChart: any;
   infoData = new MatTableDataSource<InfoModel>();
-  facilityId = 3;
+  facilityId = 1;
   displayedColumns = ['product', 'amount', 'sum']
 
   donutData = {

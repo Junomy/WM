@@ -46,6 +46,16 @@ namespace WM.Core.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Facilities");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Address = "Earth, Europe, Ukraine",
+                            Description = "This is the main facility.",
+                            IsActive = true,
+                            Name = "Main Facility"
+                        });
                 });
 
             modelBuilder.Entity("WM.Core.Domain.Entities.Inventory", b =>
@@ -101,38 +111,38 @@ namespace WM.Core.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
+                            Link = "/dashboard",
+                            Name = "Dashboard"
+                        },
+                        new
+                        {
+                            Id = 2,
                             Link = "/inventory",
                             Name = "Inventory"
                         },
                         new
                         {
-                            Id = 2,
+                            Id = 3,
                             Link = "/orders",
                             Name = "Orders"
                         },
                         new
                         {
-                            Id = 3,
+                            Id = 4,
                             Link = "/products",
                             Name = "Products"
                         },
                         new
                         {
-                            Id = 4,
+                            Id = 5,
                             Link = "/warehouses",
                             Name = "Warehouses"
                         },
                         new
                         {
-                            Id = 5,
+                            Id = 6,
                             Link = "/facilities",
                             Name = "Facilities"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Link = "/dashboard",
-                            Name = "Dashboard"
                         });
                 });
 
@@ -168,20 +178,20 @@ namespace WM.Core.Infrastructure.Migrations
                         new
                         {
                             Id = 2,
-                            MenuId = 2,
-                            RoleId = 1
+                            MenuId = 1,
+                            RoleId = 2
                         },
                         new
                         {
                             Id = 3,
-                            MenuId = 3,
-                            RoleId = 1
+                            MenuId = 1,
+                            RoleId = 3
                         },
                         new
                         {
                             Id = 4,
-                            MenuId = 1,
-                            RoleId = 2
+                            MenuId = 2,
+                            RoleId = 1
                         },
                         new
                         {
@@ -192,20 +202,20 @@ namespace WM.Core.Infrastructure.Migrations
                         new
                         {
                             Id = 6,
-                            MenuId = 3,
-                            RoleId = 2
+                            MenuId = 2,
+                            RoleId = 3
                         },
                         new
                         {
                             Id = 7,
-                            MenuId = 4,
-                            RoleId = 2
+                            MenuId = 3,
+                            RoleId = 1
                         },
                         new
                         {
                             Id = 8,
-                            MenuId = 1,
-                            RoleId = 3
+                            MenuId = 3,
+                            RoleId = 2
                         },
                         new
                         {
@@ -216,26 +226,32 @@ namespace WM.Core.Infrastructure.Migrations
                         new
                         {
                             Id = 10,
-                            MenuId = 5,
+                            MenuId = 4,
                             RoleId = 1
                         },
                         new
                         {
                             Id = 11,
-                            MenuId = 6,
-                            RoleId = 1
+                            MenuId = 4,
+                            RoleId = 2
                         },
                         new
                         {
                             Id = 12,
-                            MenuId = 6,
-                            RoleId = 2
+                            MenuId = 4,
+                            RoleId = 3
                         },
                         new
                         {
                             Id = 13,
+                            MenuId = 5,
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 14,
                             MenuId = 6,
-                            RoleId = 2
+                            RoleId = 1
                         });
                 });
 
@@ -435,7 +451,7 @@ namespace WM.Core.Infrastructure.Migrations
                         {
                             Id = 1,
                             Email = "maxslag74@gmail.com",
-                            FacilityId = 3,
+                            FacilityId = 1,
                             Name = "Maxim",
                             Password = "Pa$$word1234",
                             Position = "Head Admin",
@@ -446,7 +462,7 @@ namespace WM.Core.Infrastructure.Migrations
                         {
                             Id = 2,
                             Email = "manager_test@gmail.com",
-                            FacilityId = 3,
+                            FacilityId = 1,
                             Name = "Manager",
                             Password = "Pa$$word1234",
                             Position = "Manager",
@@ -457,7 +473,7 @@ namespace WM.Core.Infrastructure.Migrations
                         {
                             Id = 3,
                             Email = "worker_test@gmail.com",
-                            FacilityId = 3,
+                            FacilityId = 1,
                             Name = "Worker",
                             Password = "Pa$$word1234",
                             Position = "Worker",
@@ -490,6 +506,15 @@ namespace WM.Core.Infrastructure.Migrations
                     b.HasIndex("FacilityId");
 
                     b.ToTable("Warehouses");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Description = "This is a warehouse A1",
+                            FacilityId = 1,
+                            Name = "W-A1"
+                        });
                 });
 
             modelBuilder.Entity("WM.Core.Domain.Entities.Inventory", b =>

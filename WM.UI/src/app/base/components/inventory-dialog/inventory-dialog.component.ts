@@ -21,7 +21,7 @@ export class InventoryDialogComponent implements OnInit, OnDestroy {
     fg!: FormGroup;
     warehouses!: Warehouse[];
     products!: Product[];
-    facilityId: number = 3;
+    facilityId: number = 1;
 
     constructor(private productDataService: ProductDataService,
         private warehouseDataService: WarehouseDataService,

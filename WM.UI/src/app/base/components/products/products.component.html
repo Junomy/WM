@@ -1,7 +1,7 @@
 <app-loading *ngIf="loading"></app-loading>
 <app-navigation></app-navigation>
 <h1>Products</h1>
-<button class="add-btn" mat-raised-button color="primary" (click)="addProduct(null)">Add Product</button>
+<button class="add-btn green-btn" mat-raised-button color="primary" (click)="addProduct(null)">Add Product</button>
 <form class="filter-form form-body" [formGroup]="filterGroup">
     <mat-form-field class="input-field">
         <mat-label for="name">Name</mat-label>
@@ -17,12 +17,12 @@
     </mat-form-field>
     <button 
         [disabled]="filterGroup.value.name == null && filterGroup.value.minPrice == null && filterGroup.value.maxPrice== null"
-        mat-raised-button color="warn" 
+        mat-raised-button color="warn" class="delete-btn"
         (click)="clearFilters()">Clear filters</button>
-    <button class="add-btn" mat-raised-button color="primary" (click)="search()">Search</button>
+    <button class="add-btn search-btn" mat-raised-button color="primary" (click)="search()">Search</button>
 </form>
 <div>
-    <table mat-table matSort [dataSource]="products" class="mat-elevation-z8">
+    <table mat-table matSort [dataSource]="products">
         <ng-container matColumnDef="name">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
             <td mat-cell *matCellDef="let element">{{ element.name }}</td>
@@ -38,8 +38,8 @@
         <ng-container matColumnDef="editBtn">
             <th mat-header-cell *matHeaderCellDef></th>
             <td mat-cell *matCellDef="let element">
-                <button mat-raised-button color="primary" (click)="addProduct(element)">Edit</button>
-                <button mat-raised-button color="warn" (click)="deleteProduct(element.id)">X</button>
+                <button mat-raised-button color="primary" class="edit-btn" (click)="addProduct(element)">Edit</button>
+                <button mat-raised-button color="warn" class="delete-btn" (click)="deleteProduct(element.id)">X</button>
             </td>
         </ng-container>
     

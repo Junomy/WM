@@ -8,6 +8,16 @@ public class FacilitiesConfig : IEntityTypeConfiguration<Facility>
 {
     public void Configure(EntityTypeBuilder<Facility> builder)
     {
-        
+        builder.HasData(new Facility[]
+        {
+            new Facility
+            {
+                Id = 1,
+                Name = "Main Facility",
+                Description = "This is the main facility.",
+                Address = "Earth, Europe, Ukraine",
+                IsActive = true,
+            }
+        });
     }
 }

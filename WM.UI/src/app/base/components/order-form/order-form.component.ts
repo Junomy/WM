@@ -25,7 +25,7 @@ export class OrderFormComponent implements OnInit, OnDestroy {
     products: Product[];
     inventory: InventoryItem[];
     filter: InventoryFilter = new InventoryFilter();
-    facilityId = 3;
+    facilityId = 1;
     @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
     items = new MatTableDataSource<OrderItem>();
     displayedColumns = ['name', 'amount', 'price'];

@@ -26,7 +26,7 @@ public class UsersConfig : IEntityTypeConfiguration<User>
                 Password = "Pa$$word1234",
                 Position = "Head Admin",
                 RoleId = 1,
-                FacilityId = 3
+                FacilityId = 1
             },
             new User
             {
@@ -37,7 +37,7 @@ public class UsersConfig : IEntityTypeConfiguration<User>
                 Password = "Pa$$word1234",
                 Position = "Manager",
                 RoleId = 2,
-                FacilityId = 3
+                FacilityId = 1
             },
             new User
             {
@@ -48,7 +48,7 @@ public class UsersConfig : IEntityTypeConfiguration<User>
                 Password = "Pa$$word1234",
                 Position = "Worker",
                 RoleId = 3,
-                FacilityId = 3
+                FacilityId = 1
             }
         });
     }

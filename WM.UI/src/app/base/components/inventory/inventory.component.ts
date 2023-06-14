@@ -23,7 +23,7 @@ export class InventoryComponent implements OnInit, OnDestroy {
     pageSize = 15;
     warehouses = [1];
     filter!: InventoryFilter;
-    displayedColumns = ['product', 'amount', 'sellPrice', 'buyPrice', 'warehouse', 'facility', 'editBtn', 'deleteBtn'];
+    displayedColumns = ['product', 'amount', 'sellPrice', 'buyPrice', 'warehouse', 'facility', 'editBtn'];
     
     @ViewChild(MatSort, { static: true }) sort!: MatSort;
     @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;

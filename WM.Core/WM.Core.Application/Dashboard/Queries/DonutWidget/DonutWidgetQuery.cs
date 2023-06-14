@@ -62,7 +62,7 @@ public class DonutWidgetQueryHandler : IRequestHandler<DonutWidgetQuery, List<Pr
             }
         }
 
-        items = items.OrderByDescending(x => x.Amount * x.Price).Take(10).ToList();
+        items = items.OrderByDescending(x => x.Amount * x.Price).Take(5).ToList();
         var sum = items.Select(x => x.Amount * x.Price).Sum();
 
         foreach (var item in items)

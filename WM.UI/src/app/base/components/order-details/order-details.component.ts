@@ -55,19 +55,19 @@ export class OrderDetailsComponent implements OnInit, OnDestroy {
         switch(status) {
             case 1:
                 return {
-                    'background-color': 'lightgreen',
+                    'background-color': '#9DB5DA',
                 }
             case 2:
                 return {
-                    'background-color': 'lightsalmon',
+                    'background-color': '#90DF8F',
                 }
             case 3:
                 return {
-                    'background-color': 'lightcoral',
+                    'background-color': '#E48A89',
                 }
         }
         return {
-            'background-color': 'gray',
+            'background-color': '#898989',
         };
     }
 
