@@ -1,0 +1,78 @@
+<app-loading *ngIf="loading"></app-loading>
+<app-navigation></app-navigation>
+<div class="row-md-1">
+    <h1 class="col-md-1">Order-{{ order.id }}</h1>
+    <p class="status col" [ngStyle]="calculateStatusStyle(order.statusId)">{{ order.status }}</p>
+<div>
+<div>
+    <h3>Facility: {{ order.facilityName }}</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Amount</th>
+                <th>Price</th>
+                <th>Sum</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of order.items" [ngStyle]="validateProductAmount(item.productId)">
+                <td>{{ item.name }}</td>
+                <td>{{ item.amount }}</td>
+                <td>{{ item.price }}</td>
+                <td>{{ item.amount * item.price }}</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td><b>Total</b></td>
+                <td><b>{{ order.sum }}</b></td>
+            </tr>
+        </tbody>
+    </table>
+    <h3>Inventory</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Warehouse</th>
+                <th>Product</th>
+                <th>Amount</th>
+                <th>Price</th>
+                <th>Sum</th>
+            </tr>
+        <tbody>
+            <tr *ngFor="let item of inventory">
+                <td>{{ item.warehouseName }}</td>
+                <td>{{ item.productName }}</td>
+                <td>{{ item.amount }}</td>
+                <td>{{ item.inventoryPrice }}</td>
+                <td>{{ item.amount * item.inventoryPrice }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <div>
+        <button 
+            mat-raised-button 
+            color="primary" 
+            class="def-btn close-btn"
+            *ngIf="order.statusId == 2" 
+            (click)="updateStatus(3)">
+            Close Order</button>
+        <button 
+            mat-raised-button 
+            color="warn" 
+            class="def-btn delete-btn"
+            *ngIf="order.statusId == 1" 
+            [disabled]="!validOrder" 
+            (click)="updateStatus(4)">
+            Cancel</button>
+        <button 
+            mat-raised-button 
+            color="primary" 
+            class="def-btn green-btn"
+            *ngIf="order.statusId == 1" 
+            [disabled]="!validOrder" 
+            (click)="updateStatus(2)">
+            Accept</button>
+    </div>
+</div>

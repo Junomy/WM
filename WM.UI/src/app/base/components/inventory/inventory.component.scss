@@ -1,0 +1,54 @@
+body {
+    width: 100%;
+    height: 100px;
+}
+
+table {
+    margin-top: 5px;
+    width: 100%;
+}
+
+.red {
+    color: red;
+}
+
+.green {
+    color: green;
+}
+
+.filter {
+    position: fixed;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    height: 100vh;
+    max-height: 100%;
+    max-width: 100%;
+    width: 30%;
+    top: 0;
+    background-color: white;
+    box-shadow: 2px 0 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+button {
+    margin: 3px;
+}
+
+.green-btn {
+    background-color: #7AC567;
+}
+
+.filter-btn {
+    background-color: #E58453;
+}
+
+.edit-btn {
+    background-color: #7194C8;
+}
+
+.delete-btn {
+    background-color: #F65D52;
+}

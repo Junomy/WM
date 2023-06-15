@@ -1,0 +1,13 @@
+table {
+    width: 100%;
+
+    .list-content {
+        white-space: nowrap;
+
+        ul {
+            list-style-type: none;
+            margin: unset;
+            padding: unset;
+        }
+    }
+}

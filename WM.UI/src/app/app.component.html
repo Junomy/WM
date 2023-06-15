@@ -1,0 +1,8 @@
+<head>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<div class="background"></div>
+<div class="app-container">
+  <app-login (loggedIn)="onLoggedIn($event)" *ngIf="!loggedIn"></app-login>
+  <router-outlet></router-outlet>
+</div>

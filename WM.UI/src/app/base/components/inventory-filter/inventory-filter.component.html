@@ -1,0 +1,71 @@
+<app-loading *ngIf="loading"></app-loading>
+<div class="container">
+     <h1 class="row">Filter inventory</h1>
+     <form class="w-100" [formGroup]="fg">
+          <div class="row">
+               <mat-select 
+                    class="col-sm option" 
+                    placeholder="Choose facility" 
+                    formControlName="facilities"
+                    [ngClass]="fg.value.facilities ? 'filled' : 'active'"
+                    multiple>
+                    <mat-option *ngFor="let facility of options.facilityOptions" [value]="facility.id">{{ facility.name }}</mat-option>
+               </mat-select>
+               <mat-select 
+                    class="col-sm option" 
+                    placeholder="Choose warehouse" 
+                    formControlName="warehouses"
+                    [disabled]="!fg.value.facilities"
+                    [ngClass]="!fg.value.facilities ? 'inactive' : fg.value.warehouses ? 'filled' : 'active'"
+                    multiple>
+                    <mat-option *ngFor="let warehouse of options.warehouseOptions" [value]="warehouse.id">{{ warehouse.name }}</mat-option>
+               </mat-select>
+          </div>
+          <div class="row">
+               <mat-select 
+                    class="col option" 
+                    placeholder="Choose product" 
+                    formControlName="products" 
+                    [disabled]="!fg.value.facilities"
+                    [ngClass]="!fg.value.facilities ? 'inactive' : fg.value.products ? 'filled' : 'active'"
+                    multiple>
+                    <mat-option *ngFor="let product of options.productOptions" [value]="product.id">{{ product.name }}</mat-option>
+               </mat-select>
+          </div>
+          <div class="row">
+               <mat-form-field class="col-sm w-50">
+                    <mat-label>Min Amount</mat-label>
+                    <input type="number" formControlName="minAmount" matInput>
+               </mat-form-field>
+               <mat-form-field class="col-sm w-50">
+                    <mat-label>Max Amount</mat-label>
+                    <input type="number" formControlName="maxAmount" matInput>
+               </mat-form-field>
+          </div>
+          <div class="row">
+               <mat-form-field class="col-sm w-50">
+                    <mat-label>Min Sell Price</mat-label>
+                    <input type="number" formControlName="minSellPrice" matInput>
+               </mat-form-field>
+               <mat-form-field class="col-sm w-50">
+                    <mat-label>Max Sell Price</mat-label>
+                    <input type="number" formControlName="maxSellPrice" matInput>
+               </mat-form-field>
+          </div>
+          <div class="row">
+               <mat-form-field class="col-sm w-50">
+                    <mat-label>Min Buy Price</mat-label>
+                    <input type="number" formControlName="minBuyPrice" matInput>
+               </mat-form-field>
+               <mat-form-field class="col-sm w-50">
+                    <mat-label>Max Buy Price</mat-label>
+                    <input type="number" formControlName="minBuyPrice" matInput>
+               </mat-form-field>
+          </div>
+          <div class="row">
+               <button class="col-sm-5 green-btn" mat-raised-button color="primary" (click)="save()">Save</button>
+               <div class="col-sm"></div>
+               <button class="col-sm-5 delete-btn" mat-raised-button color="warn" (click)="clear()">Clear</button>
+          </div>
+     </form>
+</div>

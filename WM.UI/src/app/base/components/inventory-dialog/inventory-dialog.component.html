@@ -1,0 +1,33 @@
+<app-loading *ngIf="loading"></app-loading>
+<div class="dialog-header">
+    <span class="heading-16">Product</span>
+    <i class="icon close-icon" (click)="dialogRef.close()"></i>
+</div>
+<form class="form-body" [formGroup]="fg">
+    <mat-form-field>
+        <mat-select formControlName="warehouse" placeholder="Select warehouse">
+            <mat-option *ngFor="let option of warehouses" [value]="option.id">{{ option.name }}</mat-option>
+        </mat-select>
+    </mat-form-field> 
+    <mat-form-field>
+        <mat-select formControlName="product" placeholder="Select product">
+            <mat-option *ngFor="let option of products" [value]="option.id">{{ option.name }}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label for="price">Price:</mat-label>
+        <input id="price" type="number" formControlName="price" matInput>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label for="amount">Amount:</mat-label>
+        <input id="amount" type="number" formControlName="amount" matInput>
+    </mat-form-field>
+</form>
+<div class="dialog-footer">
+    <button 
+        class="def-btn green-btn"
+        color="primary"
+        mat-raised-button
+        (click)="save()">
+        Save</button>
+</div>

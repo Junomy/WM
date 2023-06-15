@@ -1,0 +1,31 @@
+.option {
+    padding: 10px;
+    margin: auto;
+    margin-top: 10px;
+    margin-left: 10px;
+    border-radius: 5px;
+}
+
+.active {
+    border: 1px #0275d8 solid;
+}
+
+.filled {
+    border: 1px #5cb85c solid;
+}
+
+.inactive {
+    border: 1px #292b2c solid;
+}
+
+button {
+    margin: 3px;
+}
+
+.green-btn {
+    background-color: #7AC567;
+}
+
+.delete-btn {
+    background-color: #F65D52;
+}

@@ -1,0 +1,30 @@
+table {
+    width: 100%;
+    margin-top: 1%;
+
+    .list-content {
+        white-space: nowrap;
+
+        ul {
+            list-style-type: none;
+            margin: unset;
+            padding: unset;
+        }
+    }
+
+    button {
+        margin: 3px;
+    }
+}
+
+.green-btn {
+    background-color: #7AC567;
+}
+
+.edit-btn {
+    background-color: #7194C8;
+}
+
+.delete-btn {
+    background-color: #F65D52;
+}

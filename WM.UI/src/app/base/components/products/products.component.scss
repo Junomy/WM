@@ -1,0 +1,58 @@
+:host {
+    display: flex;
+    flex-direction: column;
+}
+
+table {
+    width: 100%;
+    margin-top: 1%;
+
+    .mat-header-cell, .mat-cell {
+        //text-align: center;
+    }
+
+    .list-content {
+        white-space: nowrap;
+
+        ul {
+            list-style-type: none;
+            margin: unset;
+            padding: unset;
+        }
+    }
+
+    button {
+        margin: 3px;
+    }
+
+}
+
+.add-btn {
+    width: 10%;
+    float: right;
+}
+
+.input-field {
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
+.green-btn {
+    background-color: #7AC567;
+}
+
+.filter-btn {
+    background-color: #E58453;
+}
+
+.edit-btn {
+    background-color: #7194C8;
+}
+
+.delete-btn {
+    background-color: #F65D52;
+}
+
+.search-btn {
+    background-color: #6979D0;
+}

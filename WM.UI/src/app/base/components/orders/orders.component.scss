@@ -1,0 +1,47 @@
+body {
+    width: 100%;
+    height: 100px;
+}
+
+table {
+    width: 100%;
+    margin-top: 1%;
+
+    .list-content {
+        white-space: nowrap;
+
+        ul {
+            list-style-type: none;
+            margin: unset;
+            padding: unset;
+        }
+    }
+}
+
+.status {
+    border-radius: 15px;
+    padding: 5px 20px;
+    color: white
+}
+
+.col {
+    width: 15%;
+    margin: 5px;
+}
+
+.btn {
+    margin: 5px;
+    float: right;
+}
+
+.green-btn {
+    background-color: #7AC567;
+}
+
+.order-btn {
+    background-color: #6979D0;
+}
+
+.delete-btn {
+    background-color: #F65D52;
+}
